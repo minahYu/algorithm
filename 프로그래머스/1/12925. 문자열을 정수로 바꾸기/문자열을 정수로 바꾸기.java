@@ -1,7 +1,5 @@
 class Solution {
     public int solution(String s) {
-        int answer = Integer.parseInt(s);
-        
-        return answer;
+        return s.charAt(0)=='-'?Integer.valueOf(s.replace("-",""))*-1:Integer.valueOf(s.replace("-",""));
     }
 }
