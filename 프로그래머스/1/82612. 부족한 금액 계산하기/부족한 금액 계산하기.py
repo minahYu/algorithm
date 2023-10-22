@@ -1,11 +1,11 @@
 def solution(price, money, count):
     answer = -1
-    n_price = []
+    totalAmount = price
     
-    for rotation in range(count):
-        n_price.append(price * (rotation+1))
-            
-    balance = sum(n_price)-money
-    answer = balance if balance > 0 else 0
+    for rotation in range(count-1):
+        price *= rotation+1
+        totalAmount += price
+        
+    answer = totalAmount-money if totalAmount-money > 0 else 0
 
     return answer
