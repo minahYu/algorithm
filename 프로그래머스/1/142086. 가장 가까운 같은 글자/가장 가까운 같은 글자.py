@@ -3,10 +3,11 @@ def solution(s):
     s_list = list(s)
     
     for val, idx in zip(s_list, range(len(s_list))):
-        if s.index(val) == idx:
+        first = s_list.index(val)
+        if first == idx:
             answer.append(-1)
         else:
-            answer.append(idx-s_list.index(val))
-            s_list[s_list.index(val)] = ""
+            answer.append(idx-first)
+            s_list[first] = ""
     
     return answer
