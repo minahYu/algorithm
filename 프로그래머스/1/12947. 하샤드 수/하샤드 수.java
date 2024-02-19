@@ -1,14 +1,13 @@
 class Solution {
     public boolean solution(int x) {
         boolean answer = true;
-        int sum = 0, temp = x;
-
-        while(temp != 0) {
-            sum += temp%10;
-            temp /= 10;
-        }
+        int sum = 0, xCopy = x;
         
-        if(x%sum != 0) 
+        while(x != 0) {
+            sum += (x % 10);
+            x /= 10;
+        }
+        if(xCopy%sum != 0)
             answer = false;
         
         return answer;
