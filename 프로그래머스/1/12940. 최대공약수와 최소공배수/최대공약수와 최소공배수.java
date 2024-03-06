@@ -9,7 +9,6 @@ class Solution {
             answer[1] = m;
         } else {
             for(int i=(int)Math.sqrt(m*n); i>0; i--) {
-                System.out.println(i);
                 if(n%i == 0 && m%i == 0) {
                     answer[0] = i;
                     break;
