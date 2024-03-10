@@ -1,19 +1,19 @@
 class Solution {
     public String solution(String s) {
         String answer = "";
+        char[] sCharArr = s.toCharArray();
         int j = 0;
-        char[] sArr = s.toCharArray();
-        
+
         for(int i=0; i<s.length(); i++) {
-            if(j%2 == 1)
-                answer += String.valueOf(sArr[i]).toLowerCase();
-            else 
-                answer += String.valueOf(sArr[i]).toUpperCase();
+            if(j%2 == 0) 
+                answer += String.valueOf(sCharArr[i]).toUpperCase();
+            else
+                answer += String.valueOf(sCharArr[i]).toLowerCase();
             j++;
-            if(sArr[i] == ' ')
+            
+            if(sCharArr[i] == ' ')
                 j = 0;
         }
-        
         return answer;
     }
 }
