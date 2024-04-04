@@ -1,19 +1,24 @@
 class Solution {
     public int solution(int number, int limit, int power) {
-        int answer = 1;
-        int num = 0;
+        int answer = 0;
+        int[] ansArr = new int[number];
         
-        for(int i=2; i<=number; i++) {
-            num = 0;
-            for(int j=1; j<=Math.sqrt(i); j++) {
-                if(i == j*j)
-                    num++;
-                else if(i%j == 0) 
-                    num += 2;
+        for(int i=0; i<number; i++) { 
+            for(int j=1; j<=(int)Math.sqrt(i+1); j++) {
+                if((i+1) % j == 0) {
+                    ansArr[i]++;
+                    if(j != (i+1)/j)
+                        ansArr[i]++;
+                }
             }
-            answer = num > limit ? answer+power : answer+num;
         }
         
+        for(int i=0; i<number; i++) { 
+            if(ansArr[i] > limit)
+                answer += power;
+            else
+                answer += ansArr[i];
+        }
         return answer;
     }
 }
