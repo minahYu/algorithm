@@ -1,12 +1,17 @@
 class Solution {
     public int solution(int n, int m, int[] section) {
         int answer = 1;
-        int notFull = section[0] + m;
+        int num = section[0] + m;
+        int i = 0;
         
-        for(int i=1; i<section.length; i++) {
-            if(section[i] >= notFull) {
+        while(true) {
+            if(num > n || i > section.length-1)
+                break;
+            if(section[i] < num)
+                i++;
+            else {
+                num = section[i] + m;
                 answer++;
-                notFull = section[i] + m;
             }
         }
         
