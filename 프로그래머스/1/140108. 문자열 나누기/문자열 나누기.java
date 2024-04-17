@@ -1,29 +1,26 @@
 class Solution {
     public int solution(String s) {
         int answer = 0;
-        char[] sArr = new char[s.length()];
-        int xCnt = 1, otherCnt = 0;
-        char x = '0';
-
-        sArr = s.toCharArray();
-        x = sArr[0];
-        
-        for(int i=1; i<s.length(); i++) {
-            if(sArr[i] == x)
-                xCnt++;
-            else
-                otherCnt++;
+        int xCount = 0, otherCount = 0;
+        char[] sArr = s.toCharArray();
+        char x = ' ';
+    
+        for(int i=0; i<sArr.length; i++) {
+            if(xCount == 0 && otherCount == 0)
+                x = sArr[i];
             
-            if(xCnt == otherCnt) {
-                if(i<s.length()-1)
-                    x = sArr[i+1];
+            if(x == sArr[i]) 
+                xCount++;
+            else 
+                otherCount++;
+            
+            if(xCount == otherCount) {
                 answer++;
-                xCnt = 0;
-                otherCnt = 0;
+                xCount = 0;
+                otherCount = 0;
             }
         }
-        
-        if(xCnt != 0)
+        if(xCount != otherCount)
             answer++;
         
         return answer;
