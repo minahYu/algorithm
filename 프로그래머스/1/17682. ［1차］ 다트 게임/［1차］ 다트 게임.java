@@ -5,43 +5,43 @@ class Solution {
         int answer = 0;
         int[] scores = new int[3];
         
-        char[] dartChArr = dartResult.toCharArray();
-        int scoreIndex = -1;
-        for(int i=0; i<dartChArr.length; i++) {
-            if(Character.isDigit(dartChArr[i])) {
-                scoreIndex++;
-                scores[scoreIndex] = Character.getNumericValue(dartChArr[i]);
-                if(Character.isDigit(dartChArr[i+1])) {
-                    i++;
-                    scores[scoreIndex] *= 10;  
-                }
+        char[] chArr = dartResult.toCharArray();
+        int index = -1;
+        for(int i=0; i<chArr.length; i++) {
+            if(Character.isDigit(chArr[i])) {
+                index++;
+                scores[index] = chArr[i] - '0';
             }
             
-            switch(dartChArr[i]) {
+            if(chArr[i] == '1' && chArr[i+1] == '0') {
+                scores[index] = 10;
+                i++;
+            }
+            
+            switch(chArr[i]) {
                 case 'S':
-                    scores[scoreIndex] = (int)Math.pow(scores[scoreIndex], 1);
+                    scores[index] = (int)Math.pow(scores[index], 1);
                     break;
                 case 'D':
-                    scores[scoreIndex] = (int)Math.pow(scores[scoreIndex], 2);
+                    scores[index] = (int)Math.pow(scores[index], 2);
                     break;
                 case 'T':
-                    scores[scoreIndex] = (int)Math.pow(scores[scoreIndex], 3);
+                    scores[index] = (int)Math.pow(scores[index], 3);
+                    break;
+                case '*':
+                    scores[index] *= 2;
+                    if(index > 0) {
+                        scores[index-1] *= 2;
+                    }
+                    break;
+                case '#':
+                    scores[index] *= -1;
                     break;
             }
-            
-            if(dartChArr[i] == '*') {
-                scores[scoreIndex] *= 2;
-                if(scoreIndex > 0) {
-                    scores[scoreIndex-1] *= 2;
-                }
-            }
-            if(dartChArr[i] == '#') {
-                scores[scoreIndex] *= -1;
-            }
         }
-        
+
         for(int i=0; i<scores.length; i++) {
-            answer += scores[i];   
+            answer += scores[i];
         }
         
         return answer;
