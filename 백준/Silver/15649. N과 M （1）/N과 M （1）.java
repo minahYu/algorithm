@@ -16,7 +16,7 @@ public class Main {
 	}
 	
 	private static void DFS(int N, int M, int depth) {
-		if(depth == M) {  
+		if(depth == M) { 
 			for(int i : arr) {
 				System.out.print(i + " ");
 			}
